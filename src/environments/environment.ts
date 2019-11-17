@@ -5,9 +5,8 @@
 export const environment = {
   production: false,
   server: 'https://api.themoviedb.org/3',
-  apiKey: 'be931b79ee832bb57f81ebf922774232', // This is the TMDb apikey
+  apiKey: '<api_key>', // This is the TMDb apikey
   // tslint:disable-next-line:max-line-length
-  token: 'eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiJiZTkzMWI3OWVlODMyYmI1N2Y4MWViZjkyMjc3NDIzMiIsInN1YiI6IjVkY2VlMzZhOGE4NGQyMDAxNzY5YTYxNyIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.bejUHEEjGa9-997KaI0QRWjK2sBj2NtRgPwD8-K-Ocs',
   default_Language: 'en-US',
   poster_url: 'http://image.tmdb.org/t/p/w185'
 };
