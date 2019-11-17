@@ -25,9 +25,10 @@ Say what the step will be
 3. Search for `enviorment.ts` file.
 4. Replace `<api_key>` with your TMDb api Key. 
    e.g : api_key : 'sdadaj232kad8ada23kaj8asdk3'
-5. Run your project by using command `ng serve` in code editor's cmd;
-6. Project will run on `localhost:4200`
-7. Setup Completed
+5. Switch to branch `v_1.0.1`.
+6. Run your project by using command `ng serve` in code editor's cmd;
+7. Project will run on `localhost:4200`
+8. Setup Completed
 
 
 
