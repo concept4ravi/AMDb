@@ -9,6 +9,6 @@
     
   </div>
   <div class="footer">
-    <div ><span class="link--more" [routerLink]="getRouterLink()" (click)="moreHandler()">More...</span></div>
+    <div *ngIf="itemList && itemList.length"><span class="link--more" [routerLink]="getRouterLink()" (click)="moreHandler()">More...</span></div>
   </div>
 </div>
