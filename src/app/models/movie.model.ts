@@ -7,6 +7,7 @@ export class MovieModel extends BaseModel {
     title: string;
     release_date: Date;
     revenue: string;
+    production_companies: Array<any>;
     runtime: number;
     status: string;
     constructor(data: {

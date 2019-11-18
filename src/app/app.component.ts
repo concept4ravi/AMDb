@@ -12,11 +12,6 @@ export class AppComponent implements OnInit {
   constructor(private movieSrvc: MovieService) { }
   title = 'mean-project';
   ngOnInit(): void {
-    const query: QueryModel = new QueryModel({
-      query: 'DDLJ'
-    });
-
-    this.movieSrvc.searchMovie(query);
   }
 }
 

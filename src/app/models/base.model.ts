@@ -8,6 +8,8 @@ export class BaseModel {
     adult: boolean;
     // backdrop_path: string;
     original_language: string;
+    production_companies: Array<any>;
+    production_countries: Array<any>;
     vote_average: number;
     overview: string;
     genres: Array<GeneresModel>;
@@ -20,6 +22,9 @@ export class BaseModel {
         poster_path?: string;
         id?: number;
         adult?: boolean;
+        production_companies?: Array<any>;
+        production_countries?: Array<any>;
+
         // backdrop_path?: string;
         original_language?: string;
         release_date?: string
@@ -41,5 +46,7 @@ export class BaseModel {
         this.overview = data.overview;
         this.origin_country = data.origin_country || [];
         this.homepage = data.homepage;
+        this.production_companies = data.production_companies || [];
+        this.production_countries = data.production_countries || [];
     }
 }

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { ActivatedRoute, Router, NavigationEnd } from '@angular/router';
 import { MovieService } from '../services/movie.service';
 import { TvService } from '../services/tv.service';
@@ -11,13 +11,14 @@ import { INDEX_KEYS, TYPES } from '../constants/constants';
 import { TvShowModel } from '../models/tv-show.model';
 import { PersonService } from '../services/person.service';
 import { PeopleModel } from '../models/people.model';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-item-info',
   templateUrl: './item-info.component.html',
   styleUrls: ['./item-info.component.scss']
 })
-export class ItemInfoComponent implements OnInit {
+export class ItemInfoComponent implements OnInit, OnDestroy {
   paginatorLength = 0;
   itemId: number;
   urlPath: string;
@@ -25,6 +26,7 @@ export class ItemInfoComponent implements OnInit {
   wishList: Array<string> = [];
   genreList: Array<GeneresModel> = [];
   searchList: any[];
+  subArray: Array<Subscription> = [];
   // tslint:disable-next-line:no-inferrable-types
   isSearchData: boolean = false;
   readonly CELEB = TYPES.CELEB;
@@ -43,25 +45,27 @@ export class ItemInfoComponent implements OnInit {
     }
     this.itemId = this.activatedRoute.snapshot.params.id;
     this.urlPath = this.activatedRoute.snapshot.routeConfig.path;
-    this.router.events.subscribe((val) => {
-      if (val instanceof NavigationEnd) {
-        this.itemId = this.activatedRoute.snapshot.params.id;
-        this.urlPath = this.activatedRoute.snapshot.routeConfig.path;
-        this.isSearchData = false;
-        this.execute();
-      }
-    });
+    this.subArray.push(
+      this.router.events.subscribe((val) => {
+        if (val instanceof NavigationEnd) {
+          this.itemId = this.activatedRoute.snapshot.params.id;
+          this.urlPath = this.activatedRoute.snapshot.routeConfig.path;
+          this.isSearchData = false;
+          this.execute();
+        }
+      })
+    );
     this.execute();
   }
 
   execute() {
     if (this.urlPath.includes('movie')) {
-      this.genreSrvc.getMovieList().then(data => {
-        this.genreList = [];
-        if (data && data.genres) {
-          this.genreList = (data.genres as Array<GeneresModel>).map(x => new GeneresModel(x));
-        }
-      });
+      // this.genreSrvc.getMovieList().then(data => {
+      //   this.genreList = [];
+      //   if (data && data.genres) {
+      //     this.genreList = (data.genres as Array<GeneresModel>).map(x => new GeneresModel(x));
+      //   }
+      // });
       this.movieSrvc.getMovieInfo(new QueryModel(), this.itemId).then(data => {
         this.itemInfo = [];
         if (data) {
@@ -141,5 +145,10 @@ export class ItemInfoComponent implements OnInit {
     const searchType = localStorage.getItem(INDEX_KEYS.SEARCH_TYPE);
     const p = searchType + '#' + id;
     return this.wishList.findIndex(x => x === p);
+  }
+  ngOnDestroy(): void {
+    this.subArray.forEach(item => {
+      item.unsubscribe();
+    });
   }
 }

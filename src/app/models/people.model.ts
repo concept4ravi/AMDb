@@ -9,6 +9,7 @@ export class PeopleModel extends BaseModel {
     profile_path: string;
     known_for: Array<MovieModel>;
     biography: string;
+    also_known_as: Array<string>;
     name: string;
     birthday: Date;
     popularity: number;
@@ -27,6 +28,8 @@ export class PeopleModel extends BaseModel {
         adult?: boolean;
         // backdrop_path?: string;
         original_language?: string;
+        also_known_as?: Array<string>;
+
         release_date?: string
         genres?: Array<GeneresModel>;
         vote_average?: number;
@@ -42,6 +45,7 @@ export class PeopleModel extends BaseModel {
         this.biography = data.biography;
         this.birthday = data.birthday ? new Date(data.birthday) : undefined;
         this.name = data.name;
+        this.also_known_as = data.also_known_as || [];
         this.popularity = data.popularity;
     }
 }
