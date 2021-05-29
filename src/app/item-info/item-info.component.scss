@@ -107,7 +107,7 @@
                         }
                     }
                 }
-                /deep/ .mat-warn {
+                ::ng-deep .mat-warn {
                    
                     &._disabled {
                         color: gray !important;

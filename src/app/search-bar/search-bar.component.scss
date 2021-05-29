@@ -5,10 +5,10 @@
     .common {
         display: flex;
         align-items: center;
-        /deep/ .mat-form-field-underline {
+        ::ng-deep .mat-form-field-underline {
             height: 0 !important;
         }
-        /deep/ .mat-form-field {
+        ::ng-deep .mat-form-field {
             width: 100% !important;
             margin-top: 0.5rem;
         }
