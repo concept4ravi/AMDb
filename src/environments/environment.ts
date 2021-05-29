@@ -5,7 +5,7 @@
 export const environment = {
   production: false,
   server: 'https://api.themoviedb.org/3',
-  apiKey: '<add_tmdb_api_key>', // This is the TMDb apikey
+  apiKey: 'be931b79ee832bb57f81ebf922774232', // This is the TMDb apikey
   // tslint:disable-next-line:max-line-length
   default_Language: 'en-US',
   poster_url: 'http://image.tmdb.org/t/p/w185'
